@@ -32,6 +32,7 @@ pipeline {
                 script{
                     environment = params.ENVIRONMENT
                     APP_VERSION = params.version
+                    account_id = pipelineGlobals(environment) // since CI triggers CD , we get shared library content from there
                 }
             }
         }
@@ -46,7 +47,7 @@ pipeline {
                 """
             }
         }
-        
+
         stage ('Check jira ticket'){
             when{
                 expression {params.ENVIRONMENT == 'prod'}
@@ -66,10 +67,10 @@ pipeline {
             steps{
                 withAWS(region: 'us-east-1', credentials: 'aws-creds') {
                     sh """
-                    aws eks update-kubeconfig --region ${region} --name ${project}-${environment}
+                    echo "aws eks update-kubeconfig --region ${region} --name ${project}-${environment}"
                     cd helm
                     sed -i s/IMAGE_VERSION/${env.APP_VERSION}/g values.yaml
-                    helm upgrade --install ${component} -n ${project} .
+                    echo "helm upgrade --install ${component} -n ${project} ."
                     """
                 }
             }
