@@ -35,7 +35,7 @@ pipeline {
                     environment = params.ENVIRONMENT
                     APP_VERSION = params.version
                     account_id = pipelineGlobals.getAccountID(environment)
-                    // since CI triggers CD , we get shared library content from there , if you dont use shared library you cant use this function.
+                    
                 }
             }
         }
@@ -70,10 +70,10 @@ pipeline {
             steps{
                 withAWS(region: 'us-east-1', credentials: 'aws-creds') {
                     sh """
-                    echo "aws eks update-kubeconfig --region ${region} --name ${project}-${environment}"
+                    aws eks update-kubeconfig --region ${region} --name ${project}-${environment}
                     cd helm
                     sed -i s/IMAGE_VERSION/${env.APP_VERSION}/g values.yaml
-                    echo "helm upgrade --install ${component} -n ${project} ."
+                    helm upgrade --install ${component} -n ${project} .
                     """
                 }
             }
