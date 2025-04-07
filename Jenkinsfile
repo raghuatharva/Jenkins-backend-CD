@@ -15,7 +15,7 @@ pipeline {
     }
     environment {
         region= 'us-east-1'
-        account_id = '180294178330'
+        account_id = '' // 180294178330
         project = 'expense'
         environment = ''
         component = 'backend'
