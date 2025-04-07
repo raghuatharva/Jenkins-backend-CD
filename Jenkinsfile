@@ -4,6 +4,8 @@
 
 // this pipeline wull get deployed no matter what since there is no condition to deploy ; but for qa tests to run or to check jira or anything the params.ENVIRONMENT should be matching.
 
+@Library('Jenkins-Shared-Library-1') _ // to use shared library features , we need to call in cd also 
+
 pipeline {
     agent {
         label 'AGENT-1'
