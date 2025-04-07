@@ -34,7 +34,7 @@ pipeline {
                 script{
                     environment = params.ENVIRONMENT
                     APP_VERSION = params.version
-                    account_id = pipelineGlobals(environment) 
+                    account_id = pipelineGlobals.getAccountID(environment)
                     // since CI triggers CD , we get shared library content from there , if you dont use shared library you cant use this function.
                 }
             }
