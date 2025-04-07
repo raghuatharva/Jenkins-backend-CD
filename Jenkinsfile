@@ -15,7 +15,7 @@ pipeline {
     }
     environment {
         region= 'us-east-1'
-        account_id = '180294178330' // 180294178330
+        account_id = '' // 180294178330 
         project = 'expense'
         environment = ''
         component = 'backend'
@@ -32,7 +32,8 @@ pipeline {
                 script{
                     environment = params.ENVIRONMENT
                     APP_VERSION = params.version
-                   // account_id = pipelineGlobals(environment) // since CI triggers CD , we get shared library content from there
+                    account_id = pipelineGlobals(environment) 
+                    // since CI triggers CD , we get shared library content from there , if you dont use shared library you cant use this function.
                 }
             }
         }
