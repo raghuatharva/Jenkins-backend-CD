@@ -1,10 +1,10 @@
-# 🚀 Node.js Backend - CD Pipeline (Jenkins + AWS ECR + Multi-Env)
+# Node.js Backend - CD Pipeline (Jenkins + AWS ECR + Multi-Env)
 
 This guide explains how the backend Docker image built during CI is **pulled from AWS ECR** and deployed to different environments (**dev**, **staging**, **prod**) using **Jenkins pipelines**.
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 - Pull built image from **ECR**
 - Deploy to multiple environments (e.g., **Dev**, **Staging**, **Prod**)
@@ -14,7 +14,7 @@ This guide explains how the backend Docker image built during CI is **pulled fro
 
 ---
 
-## 📦 Deployment Stack
+## Deployment Stack
 
 - **AWS ECR** for image storage  
 - **Jenkins** for CD pipelines  
@@ -24,7 +24,7 @@ This guide explains how the backend Docker image built during CI is **pulled fro
 
 ---
 
-## 🚧 Pre-requisites
+## Pre-requisites
 
 - Jenkins nodes with `docker`, `awscli`, `kubectl` (if K8s)
 - ECR Repository created
@@ -33,7 +33,7 @@ This guide explains how the backend Docker image built during CI is **pulled fro
 
 ---
 
-## 🌐 Environments
+## Environments
 
 We support the following environments:
 
