@@ -1,45 +1,47 @@
-# Jenkins Continuous Deployment Pipeline – Expense App
+# 🚀 Node.js Backend - CD Pipeline (Jenkins + AWS ECR + Multi-Env)
 
-This repository contains the Jenkins CD pipeline configuration for deploying the **Expense App** (Frontend + Backend) into a Kubernetes environment using Helm charts.
-
----
-
-## 📦 Components Involved
-
-- **Jenkinsfile (CD)** – Defines CD stages for:
-  - Cloning Helm charts
-  - Updating `values.yaml`
-  - Deploying via Helm
-  - Notifying stakeholders
-
-- **Deployed using:**  
-  - Helm 3  
-  - Kubernetes  
-  - Docker (images already built in CI stage)
+This guide explains how the backend Docker image built during CI is **pulled from AWS ECR** and deployed to different environments (**dev**, **staging**, **prod**) using **Jenkins pipelines**.
 
 ---
 
-## 🛠️ Prerequisites
+## 🎯 Objectives
 
-Before you use this pipeline, ensure:
-
-- Jenkins is configured with:
-  - Kubernetes plugin (optional)
-  - Docker installed (if needed)
-  - Git & Helm CLI installed
-  - Kubeconfig file available for deployment cluster
-- Credentials are stored securely:
-  - GitHub Access Token (if private repo)
-  - Docker Registry credentials (if pushing images)
-  - Kubeconfig stored as secret file credential
+- Pull built image from **ECR**
+- Deploy to multiple environments (e.g., **Dev**, **Staging**, **Prod**)
+- Use **Jenkins** as the CD orchestrator
+- Maintain separate config per environment
+- Ensure smooth, secure, automated deployment process
 
 ---
 
-## 📁 Repo Structure
+## 📦 Deployment Stack
 
-```bash
-jenkins-cd/
-├── Jenkinsfile
-├── helm-values/
-│   ├── backend-values.yaml
-│   └── frontend-values.yaml
+- **AWS ECR** for image storage  
+- **Jenkins** for CD pipelines  
+- **Docker** or **Kubernetes** (optional) for runtime deployment  
+- **EC2** or **ECS/EKS** as deployment targets  
+- **Jenkins Shared Libraries** (optional)
+
+---
+
+## 🚧 Pre-requisites
+
+- Jenkins nodes with `docker`, `awscli`, `kubectl` (if K8s)
+- ECR Repository created
+- Jenkins has IAM credentials to pull from ECR
+- SSH access (for EC2) or Kubeconfig (for EKS)
+
+---
+
+## 🌐 Environments
+
+We support the following environments:
+
+- `dev`
+- `staging`
+- `prod`
+
+Each has:
+
+- Separate deployment targets (e.g., EC2 IPs or Kubernetes namespaces)
+- Environment-specific env files or configs
