@@ -1,4 +1,4 @@
-// environment parameter and version parameter will be passed from CI pipeline. they come from shared library.  to use those parameters, we also needs to create same parameters in the pipeline. 
+// environment parameter and version parameter will be passed from CI pipeline. to use those parameters, we also needs to create same parameters in the pipeline.
 
 // this pipeline will be triggered from the CI pipeline. in the CI pipeline, we will pass the environment and version as parameters. in this pipeline, we will use those parameters to deploy the code to the respective environment.
 
